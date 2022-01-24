@@ -20,8 +20,8 @@ import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.background.OUTPUT_PATH
-import java.io.File
 import timber.log.Timber
+import java.io.File
 
 /**
  * Cleans up temporary files generated during blurring process

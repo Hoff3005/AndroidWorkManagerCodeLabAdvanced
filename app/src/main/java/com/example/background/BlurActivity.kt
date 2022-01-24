@@ -67,12 +67,12 @@ class BlurActivity : AppCompatActivity() {
 
     private fun progressObserver(): Observer<List<WorkInfo>> {
         return Observer { listOfWorkInfo ->
-            if(listOfWorkInfo.isNullOrEmpty()){
+            if (listOfWorkInfo.isNullOrEmpty()) {
                 return@Observer
             }
 
-            listOfWorkInfo.forEach{ workInfo ->
-                if(WorkInfo.State.RUNNING == workInfo.state){
+            listOfWorkInfo.forEach { workInfo ->
+                if (WorkInfo.State.RUNNING == workInfo.state) {
                     val progress = workInfo.progress.getInt(PROGRESS, 0)
                     binding.progressBar.progress = progress
                 }

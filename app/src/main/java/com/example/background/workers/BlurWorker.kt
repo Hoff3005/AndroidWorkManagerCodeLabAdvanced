@@ -36,7 +36,7 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
         makeStatusNotification("Blurring image", appContext)
 
-        (0..100 step 10).forEach{
+        (0..100 step 10).forEach {
             setProgressAsync(workDataOf(PROGRESS to it))
             sleep()
         }
@@ -50,7 +50,8 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
             val resolver = appContext.contentResolver
 
             val picture = BitmapFactory.decodeStream(
-                    resolver.openInputStream(Uri.parse(resourceUri)))
+                resolver.openInputStream(Uri.parse(resourceUri))
+            )
 
             val output = blurBitmap(picture, appContext)
 

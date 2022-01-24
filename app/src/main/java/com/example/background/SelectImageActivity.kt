@@ -24,12 +24,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import com.example.background.databinding.ActivitySelectBinding
-import java.util.Arrays
 import timber.log.Timber
+import java.util.*
 
 class SelectImageActivity : AppCompatActivity() {
 
@@ -40,8 +40,8 @@ class SelectImageActivity : AppCompatActivity() {
     private val MAX_NUMBER_REQUEST_PERMISSIONS = 2
 
     private val permissions = Arrays.asList(
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
     private var permissionRequestCount: Int = 0
@@ -62,8 +62,8 @@ class SelectImageActivity : AppCompatActivity() {
         // Create request to get image from filesystem when button clicked
         binding.selectImage.setOnClickListener {
             val chooseIntent = Intent(
-                    Intent.ACTION_PICK,
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             )
             startActivityForResult(chooseIntent, REQUEST_CODE_IMAGE)
         }
@@ -86,15 +86,15 @@ class SelectImageActivity : AppCompatActivity() {
             if (permissionRequestCount < MAX_NUMBER_REQUEST_PERMISSIONS) {
                 permissionRequestCount += 1
                 ActivityCompat.requestPermissions(
-                        this,
-                        permissions.toTypedArray(),
-                        REQUEST_CODE_PERMISSIONS
+                    this,
+                    permissions.toTypedArray(),
+                    REQUEST_CODE_PERMISSIONS
                 )
             } else {
                 Toast.makeText(
-                        this,
-                        R.string.set_permissions_in_settings,
-                        Toast.LENGTH_LONG
+                    this,
+                    R.string.set_permissions_in_settings,
+                    Toast.LENGTH_LONG
                 ).show()
                 binding.selectImage.isEnabled = false
             }
@@ -111,8 +111,8 @@ class SelectImageActivity : AppCompatActivity() {
     }
 
     private fun isPermissionGranted(permission: String) =
-            ContextCompat.checkSelfPermission(this, permission) ==
-                    PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(this, permission) ==
+                PackageManager.PERMISSION_GRANTED
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
